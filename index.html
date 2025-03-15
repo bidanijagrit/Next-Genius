@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next Genius - Education Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Navigation Styles */
+        nav {
+            background: white;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 24px;
+            color: #1e3c72;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #1e3c72;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        .cta-btn {
+            padding: 15px 40px;
+            font-size: 18px;
+            background: white;
+            color: #1e3c72;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Courses Section */
+        .courses {
+            padding: 80px 5%;
+            background: #f5f5f5;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: #1e3c72;
+        }
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .course-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .course-info {
+            padding: 20px;
+        }
+
+        .course-info h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #1e3c72;
+        }
+
+        .course-stats {
+            display: flex;
+            justify-content: space-between;
+            color: #666;
+            margin: 15px 0;
+        }
+
+        .course-btn {
+            width: 100%;
+            padding: 10px;
+            background: #1e3c72;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Live Classes Section */
+        .live-classes {
+            padding: 80px 5%;
+        }
+
+        .live-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .live-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .live-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff3366;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        /* Notes Section */
+        .notes {
+            padding: 80px 5%;
+            background: #f5f5f5;
+        }
+
+        .notes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .notes-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .notes-card i {
+            font-size: 40px;
+            color: #1e3c72;
+            margin-bottom: 15px;
+        }
+
+        /* Tests Section */
+        .tests {
+            padding: 80px 5%;
+        }
+
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .test-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">
+            <i class="fas fa-brain"></i>
+            <span>Next Genius</span>
+        </a>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#courses">Courses</a>
+            <a href="#live">Live Classes</a>
+            <a href="#notes">Notes</a>
+            <a href="#tests">Tests</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Welcome to Next Genius</h1>
+            <p>Start your learning journey today</p>
+            <button class="cta-btn">Explore Courses</button>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section class="courses" id="courses">
+        <h2 class="section-title">Popular Courses</h2>
+        <div class="course-grid">
+            <!-- Physics Course -->
+            <div class="course-card">
+                <img src="https://source.unsplash.com/random/800x600/?physics" alt="Physics" class="course-image">
+                <div class="course-info">
+                    <h3>Complete Physics</h3>
+                    <p>Master Physics concepts for JEE/NEET</p>
+                    <div class="course-stats">
+                        <span><i class="fas fa-user"></i> 1000+ students</span>
+                        <span><i class="fas fa-star"></i> 4.8</span>
+                    </div>
+                    <button class="course-btn" onclick="alert('Opening Physics Course...')">View Course</button>
+                </div>
+            </div>
+
+            <!-- Chemistry Course -->
+            <div class="course-card">
+                <img src="https://source.unsplash.com/random/800x600/?chemistry" alt="Chemistry" class="course-image">
+                <div class="course-info">
+                    <h3>Chemistry Masterclass</h3>
+                    <p>Complete Chemistry preparation</p>
+                    <div class="course-stats">
+                        <span><i class="fas fa-user"></i> 800+ students</span>
+                        <span><i class="fas fa-star"></i> 4.7</span>
+                    </div>
+                    <button class="course-btn" onclick="alert('Opening Chemistry Course...')">View Course</button>
+                </div>
+            </div>
+
+            <!-- Mathematics Course -->
+            <div class="course-card">
+                <img src="https://source.unsplash.com/random/800x600/?mathematics" alt="Mathematics" class="course-image">
+                <div class="course-info">
+                    <h3>Mathematics Excellence</h3>
+                    <p>Master Mathematics concepts</p>
+                    <div class="course-stats">
+                        <span><i class="fas fa-user"></i> 1200+ students</span>
+                        <span><i class="fas fa-star"></i> 4.9</span>
+                    </div>
+                    <button class="course-btn" onclick="alert('Opening Mathematics Course...')">View Course</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Classes Section -->
+    <section class="live-classes" id="live">
+        <h2 class="section-title">Live Classes</h2>
+        <div class="live-grid">
+            <div class="live-card">
+                <div class="live-badge">LIVE NOW</div>
+                <h3>Physics Lecture</h3>
+                <p>Topic: Mechanics</p>
+                <p>By: Dr. Sharma</p>
+                <button class="course-btn" onclick="alert('Joining live class...')">Join Now</button>
+            </div>
+            <div class="live-card">
+                <div class="live-badge">UPCOMING</div>
+                <h3>Chemistry Lecture</h3>
+                <p>Topic: Organic Chemistry</p>
+                <p>Starting in: 2 hours</p>
+                <button class="course-btn" onclick="alert('Reminder set!')">Set Reminder</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notes Section -->
+    <section class="notes" id="notes">
+        <h2 class="section-title">Study Notes</h2>
+        <div class="notes-grid">
+            <div class="notes-card">
+                <i class="fas fa-file-pdf"></i>
+                <h3>Physics Notes</h3>
+                <p>Complete chapter-wise notes</p>
+                <button class="course-btn" onclick="alert('Downloading Physics Notes...')">Download</button>
+            </div>
+            <div class="notes-card">
+                <i class="fas fa-file-pdf"></i>
+                <h3>Chemistry Notes</h3>
+                <p>Detailed study material</p>
+                <button class="course-btn" onclick="alert('Downloading Chemistry Notes...')">Download</button>
+            </div>
+            <div class="notes-card">
+                <i class="fas fa-file-pdf"></i>
+                <h3>Mathematics Notes</h3>
+                <p>Formula sheets and solutions</p>
+                <button class="course-btn" onclick="alert('Downloading Mathematics Notes...')">Download</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tests Section -->
+    <section class="tests" id="tests">
+        <h2 class="section-title">Practice Tests</h2>
+        <div class="test-grid">
+            <div class="test-card">
+                <h3>Physics Test</h3>
+                <p>Duration: 1 hour</p>
+                <p>Questions: 30</p>
+                <button class="course-btn" onclick="alert('Starting Physics Test...')">Start Test</button>
+            </div>
+            <div class="test-card">
+                <h3>Chemistry Test</h3>
+                <p>Duration: 1 hour</p>
+                <p>Questions: 30</p>
+                <button class="course-btn" onclick="alert('Starting Chemistry Test...')">Start Test</button>
+            </div>
+            <div class="test-card">
+                <h3>Mathematics Test</h3>
+                <p>Duration: 1 hour</p>
+                <p>Questions: 30</p>
+                <button class="course-btn" onclick="alert('Starting Mathematics Test...')">Start Test</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
